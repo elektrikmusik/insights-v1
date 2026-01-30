@@ -1,0 +1,52 @@
+# OpenRouter Configuration
+openrouter:
+  api_base: "https://openrouter.ai/api/v1"
+  env_key: "OPENROUTER_API_KEY"
+  timeout: 60
+  
+  # Default model selection
+  default_model: "openai/gpt-4o"
+  
+  # Available models with metadata
+  models:
+    # OpenAI Models
+    openai/gpt-4o:
+      context_window: 128000
+      supports_structured_output: true
+      supports_vision: true
+      cost_input_per_1k: 0.0025
+      cost_output_per_1k: 0.01
+    
+    openai/gpt-4o-mini:
+      context_window: 128000
+      supports_structured_output: true
+      cost_input_per_1k: 0.00015
+      cost_output_per_1k: 0.0006
+    
+    # Anthropic Models
+    anthropic/claude-3.5-sonnet:
+      context_window: 200000
+      supports_structured_output: true
+      supports_vision: true
+      cost_input_per_1k: 0.003
+      cost_output_per_1k: 0.015
+    
+    anthropic/claude-3-opus:
+      context_window: 200000
+      supports_structured_output: true
+      cost_input_per_1k: 0.015
+      cost_output_per_1k: 0.075
+    
+    # DeepSeek (Cost-efficient)
+    deepseek/deepseek-chat:
+      context_window: 64000
+      supports_structured_output: true
+      cost_input_per_1k: 0.00014
+      cost_output_per_1k: 0.00028
+    
+    # Google
+    google/gemini-pro-1.5:
+      context_window: 1000000
+      supports_structured_output: true
+      cost_input_per_1k: 0.00125
+      cost_output_per_1k: 0.005

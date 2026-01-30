@@ -1,0 +1,52 @@
+# SiliconFlow Configuration
+siliconflow:
+  api_base: "https://api.siliconflow.cn/v1"
+  env_key: "SILICONFLOW_API_KEY"
+  timeout: 60
+  
+  # Default model selection
+  default_model: "deepseek-ai/DeepSeek-V3"
+  
+  # Best for: Asian users, Chinese language, cost-effective DeepSeek
+  
+  # Available models with metadata
+  models:
+    # DeepSeek Models (Most Cost-Effective)
+    deepseek-ai/DeepSeek-V3:
+      context_window: 64000
+      supports_structured_output: true
+      cost_input_per_1m: 0.07
+      cost_output_per_1m: 0.14
+    
+    deepseek-ai/DeepSeek-Chat:
+      context_window: 64000
+      supports_structured_output: true
+      cost_input_per_1m: 0.07
+      cost_output_per_1m: 0.14
+    
+    # Qwen Models (Alibaba)
+    Qwen/Qwen2.5-72B-Instruct:
+      context_window: 128000
+      supports_structured_output: true
+      cost_input_per_1m: 0.28
+      cost_output_per_1m: 0.28
+    
+    Qwen/Qwen2.5-32B-Instruct:
+      context_window: 128000
+      supports_structured_output: true
+      cost_input_per_1m: 0.14
+      cost_output_per_1m: 0.14
+    
+    # Yi Models (01.AI)
+    01-ai/Yi-1.5-34B-Chat:
+      context_window: 32000
+      supports_structured_output: true
+      cost_input_per_1m: 0.14
+      cost_output_per_1m: 0.14
+    
+    # GLM Models (Tsinghua)
+    THUDM/glm-4-9b-chat:
+      context_window: 128000
+      supports_structured_output: true
+      cost_input_per_1m: 0.07
+      cost_output_per_1m: 0.07

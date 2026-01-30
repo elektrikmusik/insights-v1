@@ -1,0 +1,353 @@
+{
+  "meta": {
+    "total_risks_current": 17,
+    "total_risks_prev": 18,
+    "drift_count": 4,
+    "filing_date": "2024-02-21"
+  },
+  "visual_priority_map": [
+    {
+      "risk": "Failure to meet the evolving needs of our industry and markets may adversely impact our financial results.",
+      "rank": 1,
+      "previous_rank": 1,
+      "change": 0,
+      "status": "Stable"
+    },
+    {
+      "risk": "Competition could adversely impact our market share and financial results.",
+      "rank": 2,
+      "previous_rank": null,
+      "change": null,
+      "status": "New"
+    },
+    {
+      "risk": "Failure to estimate customer demand accurately has led and could lead to mismatches between supply and demand.",
+      "rank": 3,
+      "previous_rank": 3,
+      "change": 0,
+      "status": "Stable"
+    },
+    {
+      "risk": "Our customer orders and longer-term demand estimates may change or may not be correct, as we have experienced in the past.",
+      "rank": 4,
+      "previous_rank": null,
+      "change": null,
+      "status": "New"
+    },
+    {
+      "risk": "Many end customers often do not purchase directly from us but instead purchase indirectly through multiple OEMs, ODMs, system integrators, distributors, and other channel partners.",
+      "rank": 5,
+      "previous_rank": null,
+      "change": null,
+      "status": "New"
+    },
+    {
+      "risk": "If we underestimate our customers' future demand for our products, our foundry partners may not have adequate lead-time or capacity to increase production and we may not be able to obtain sufficient inventory to fill orders on a timely basis.",
+      "rank": 6,
+      "previous_rank": 5,
+      "change": -1,
+      "status": "Fell"
+    },
+    {
+      "risk": "If we overestimate our customers’ future demand for our products, or if customers cancel or defer orders or choose to purchase from our competitors, we may not be able to reduce our inventory or other contractual purchase commitments.",
+      "rank": 7,
+      "previous_rank": 6,
+      "change": -1,
+      "status": "Fell"
+    },
+    {
+      "risk": "We build technology and introduce products for new and innovative use cases and applications, such as NVIDIA DGX Cloud services, NVIDIA AI Foundations, Omniverse platform, LLMs, and generative AI models.",
+      "rank": 8,
+      "previous_rank": null,
+      "change": null,
+      "status": "New"
+    },
+    {
+      "risk": "Challenges in estimating demand could become more pronounced or volatile in the future on both a global and regional basis.",
+      "rank": 9,
+      "previous_rank": 8,
+      "change": -1,
+      "status": "Fell"
+    },
+    {
+      "risk": "The use of our GPUs other than that for which they were designed and marketed, including new and unexpected use cases, has impacted and can in the future impact demand for our products, including by leading to inconsistent spikes and drops in demand.",
+      "rank": 10,
+      "previous_rank": 9,
+      "change": -1,
+      "status": "Fell"
+    }
+  ],
+  "sentiment_shift_indicators": [
+    {
+      "risk": "Competition could adversely impact our market share and financial results.",
+      "score": 0.0,
+      "confidence": 0.9,
+      "shift_detected": false,
+      "shift_type": "none",
+      "analysis": "New risk factor identified.",
+      "strategic_recommendation": "Assess impact of new disclosure.",
+      "original_snippet": null,
+      "new_snippet": "Our target markets remain competitive, and competition may intensify with expanding and changing product and service offerings, industry standards, customer needs, new entrants and consolidations. Our"
+    },
+    {
+      "risk": "Our customer orders and longer-term demand estimates may change or may not be correct, as we have experienced in the past.",
+      "score": 0.0,
+      "confidence": 0.9,
+      "shift_detected": false,
+      "shift_type": "none",
+      "analysis": "New risk factor identified.",
+      "strategic_recommendation": "Assess impact of new disclosure.",
+      "original_snippet": null,
+      "new_snippet": "Product transitions are complex and can impact our revenue as we often ship both new and prior architecture products simultaneously and we and our channel partners prepare to ship and support new prod"
+    },
+    {
+      "risk": "Many end customers often do not purchase directly from us but instead purchase indirectly through multiple OEMs, ODMs, system integrators, distributors, and other channel partners.",
+      "score": 0.0,
+      "confidence": 0.9,
+      "shift_detected": false,
+      "shift_type": "none",
+      "analysis": "New risk factor identified.",
+      "strategic_recommendation": "Assess impact of new disclosure.",
+      "original_snippet": null,
+      "new_snippet": "As a result, the decisions made by our multiple OEMs, ODMs, system integrators, distributors, and other channel partners, and in response to changing market conditions and changes in end-user demand f"
+    },
+    {
+      "risk": "We build technology and introduce products for new and innovative use cases and applications, such as NVIDIA DGX Cloud services, NVIDIA AI Foundations, Omniverse platform, LLMs, and generative AI models.",
+      "score": 0.0,
+      "confidence": 0.9,
+      "shift_detected": false,
+      "shift_type": "none",
+      "analysis": "New risk factor identified.",
+      "strategic_recommendation": "Assess impact of new disclosure.",
+      "original_snippet": null,
+      "new_snippet": "Our demand estimates for new use cases, applications, and services can be incorrect and create volatility in our revenue or supply levels, and we may not be able to generate significant revenue from t"
+    }
+  ],
+  "materiality_flags": [
+    {
+      "risk": "Competition could adversely impact our market share and financial results.",
+      "alert": "Material Drift Detected",
+      "details": "New risk factor identified.",
+      "recommendation": "Assess impact of new disclosure.",
+      "intensity": "LOW"
+    },
+    {
+      "risk": "Our customer orders and longer-term demand estimates may change or may not be correct, as we have experienced in the past.",
+      "alert": "Material Drift Detected",
+      "details": "New risk factor identified.",
+      "recommendation": "Assess impact of new disclosure.",
+      "intensity": "LOW"
+    },
+    {
+      "risk": "Many end customers often do not purchase directly from us but instead purchase indirectly through multiple OEMs, ODMs, system integrators, distributors, and other channel partners.",
+      "alert": "Material Drift Detected",
+      "details": "New risk factor identified.",
+      "recommendation": "Assess impact of new disclosure.",
+      "intensity": "LOW"
+    },
+    {
+      "risk": "We build technology and introduce products for new and innovative use cases and applications, such as NVIDIA DGX Cloud services, NVIDIA AI Foundations, Omniverse platform, LLMs, and generative AI models.",
+      "alert": "Material Drift Detected",
+      "details": "New risk factor identified.",
+      "recommendation": "Assess impact of new disclosure.",
+      "intensity": "LOW"
+    }
+  ],
+  "removed_risks": [
+    {
+      "risk": "Competition in our current and target markets could cause us to lose market share and revenue.",
+      "rank_prev": 2,
+      "status": "Removed",
+      "snippet": "Our target markets remain competitive, and competition may intensify with expanding and changing product and service offerings, industry standards, customer needs, new entrants and consolidations. Our"
+    },
+    {
+      "risk": "Our demand predictions may not be correct, as we have experienced from time to time.",
+      "rank_prev": 4,
+      "status": "Removed",
+      "snippet": "Product transitions are complex and frequently negatively impact our revenue as we often ship both new and legacy architecture products simultaneously and we and our channel partners prepare to ship a"
+    },
+    {
+      "risk": "We build technology and products for use cases and applications that may be new or may not yet exist.",
+      "rank_prev": 7,
+      "status": "Removed",
+      "snippet": "Examples include our Omniverse platform and third-party large language models and generative models. Our demand estimates for these use cases and applications can be incorrect and create volatility in"
+    },
+    {
+      "risk": "Climate change may have a long-term impact on our business.",
+      "rank_prev": 17,
+      "status": "Removed",
+      "snippet": "Climate change may have an increasingly adverse impact on our business and those of our customers, partners and vendors. Water and energy availability and reliability in the communities where we condu"
+    },
+    {
+      "risk": "We may not be able to realize the potential benefits of business investments or acquisitions, and we may not be able to successfully integrate acquisition targets, which could hurt our ability to grow our business, develop new products or sell our products.",
+      "rank_prev": 18,
+      "status": "Removed",
+      "snippet": "We have acquired and invested and may continue to do so in businesses that offer products, services and technologies that we believe will help expand or enhance our existing strategic objectives. Acqu"
+    }
+  ],
+  "heatmap": {
+    "heatmap_title": "Risk Profile Evolution",
+    "generated_at": "2026-01-28T08:32:37.884321+00:00",
+    "zones": {
+      "critical_red": [],
+      "warning_orange": [],
+      "new_blue": [
+        {
+          "risk_id": "competition_could_adversely_impact_our_market_shar",
+          "title": "Competition could adversely impact our market share and financial results.",
+          "current_rank": 2,
+          "rank_delta": "NEW",
+          "modality_shift": "none",
+          "heat_score": 80,
+          "summary": "New risk factor identified."
+        },
+        {
+          "risk_id": "our_customer_orders_and_longerterm_demand_estimate",
+          "title": "Our customer orders and longer-term demand estimates may change or may not be correct, as we have experienced in the past.",
+          "current_rank": 4,
+          "rank_delta": "NEW",
+          "modality_shift": "none",
+          "heat_score": 80,
+          "summary": "New risk factor identified."
+        },
+        {
+          "risk_id": "many_end_customers_often_do_not_purchase_directly_",
+          "title": "Many end customers often do not purchase directly from us but instead purchase indirectly through multiple OEMs, ODMs, system integrators, distributors, and other channel partners.",
+          "current_rank": 5,
+          "rank_delta": "NEW",
+          "modality_shift": "none",
+          "heat_score": 80,
+          "summary": "New risk factor identified."
+        },
+        {
+          "risk_id": "we_build_technology_and_introduce_products_for_new",
+          "title": "We build technology and introduce products for new and innovative use cases and applications, such as NVIDIA DGX Cloud services, NVIDIA AI Foundations, Omniverse platform, LLMs, and generative AI models.",
+          "current_rank": 8,
+          "rank_delta": "NEW",
+          "modality_shift": "none",
+          "heat_score": 80,
+          "summary": "New risk factor identified."
+        }
+      ],
+      "stable_gray": [
+        {
+          "risk_id": "failure_to_meet_the_evolving_needs_of_our_industry",
+          "title": "Failure to meet the evolving needs of our industry and markets may adversely impact our financial results.",
+          "current_rank": 1,
+          "rank_delta": 0,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "failure_to_estimate_customer_demand_accurately_has",
+          "title": "Failure to estimate customer demand accurately has led and could lead to mismatches between supply and demand.",
+          "current_rank": 3,
+          "rank_delta": 0,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "if_we_underestimate_our_customers_future_demand_fo",
+          "title": "If we underestimate our customers' future demand for our products, our foundry partners may not have adequate lead-time or capacity to increase production and we may not be able to obtain sufficient inventory to fill orders on a timely basis.",
+          "current_rank": 6,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "if_we_overestimate_our_customers_future_demand_for",
+          "title": "If we overestimate our customers’ future demand for our products, or if customers cancel or defer orders or choose to purchase from our competitors, we may not be able to reduce our inventory or other contractual purchase commitments.",
+          "current_rank": 7,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "challenges_in_estimating_demand_could_become_more_",
+          "title": "Challenges in estimating demand could become more pronounced or volatile in the future on both a global and regional basis.",
+          "current_rank": 9,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "the_use_of_our_gpus_other_than_that_for_which_they",
+          "title": "The use of our GPUs other than that for which they were designed and marketed, including new and unexpected use cases, has impacted and can in the future impact demand for our products, including by leading to inconsistent spikes and drops in demand.",
+          "current_rank": 10,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "additionally_we_depend_on_developers_customers_and",
+          "title": "Additionally, we depend on developers, customers and other third parties to build, enhance, and maintain accelerated computing applications that leverage our platforms.",
+          "current_rank": 11,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "dependency_on_thirdparty_suppliers_and_their_techn",
+          "title": "Dependency on third-party suppliers and their technology to manufacture, assemble, test, or package our products reduces our control over product quantity and quality, manufacturing yields, and product delivery schedules and could harm our business.",
+          "current_rank": 12,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "defects_in_our_products_have_caused_and_could_caus",
+          "title": "Defects in our products have caused and could cause us to incur significant expenses to remediate, which can damage our reputation and cause us to lose market share.",
+          "current_rank": 13,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "adverse_economic_conditions_may_harm_our_business",
+          "title": "Adverse economic conditions may harm our business.",
+          "current_rank": 14,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "international_sales_and_operations_are_a_significa",
+          "title": "International sales and operations are a significant part of our business, which exposes us to risks that could harm our business.",
+          "current_rank": 15,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "product_system_security_and_data_protection_breach",
+          "title": "Product, system security, and data protection breaches, as well as cyber-attacks, could disrupt our operations, reduce our expected revenue, increase our expenses, and significantly harm our business and reputation.",
+          "current_rank": 16,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        },
+        {
+          "risk_id": "business_disruptions_could_harm_our_operations_lea",
+          "title": "Business disruptions could harm our operations, lead to a decline in revenue and increase our costs.",
+          "current_rank": 17,
+          "rank_delta": -1,
+          "modality_shift": "none",
+          "heat_score": 0,
+          "summary": "Risk position updated."
+        }
+      ]
+    }
+  }
+}

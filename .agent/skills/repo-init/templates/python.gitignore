@@ -1,0 +1,18 @@
+# Python ignores
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.log
+.cache/
+.ipynb_checkpoints
+.mypy_cache/
+.ruff_cache/

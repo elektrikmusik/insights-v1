@@ -1,0 +1,135 @@
+# docker-compose.yml for InSights-ai
+
+services:
+  # -------------------------------------------------------------------------
+  # Main API Service
+  # -------------------------------------------------------------------------
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    command: /app/.venv/bin/python -m uvicorn insights.api.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - ENV=development
+      - DEBUG=true
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - MCP_SEC_URL=http://sec-mcp:8080/sse
+      - REDIS_URL=redis://redis:6379/0
+      # Ensure MCP requests to sec-mcp (and localhost) are not sent through a proxy
+      - NO_PROXY=localhost,127.0.0.1,sec-mcp
+      - no_proxy=localhost,127.0.0.1,sec-mcp
+      # Using HuggingFace Inference API - no local FinBERT container needed
+      - FINBERT_MODE=hf_inference
+      - HF_TOKEN=${HF_TOKEN}
+      - RELOAD=true
+    volumes:
+      - ../python:/app/python:ro
+      - ../configs:/app/configs:ro
+      - ../docs:/app/docs:ro
+    depends_on:
+      redis:
+        condition: service_healthy
+      sec-mcp:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # -------------------------------------------------------------------------
+  # Celery Worker
+  # -------------------------------------------------------------------------
+  worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.worker
+    command: /app/.venv/bin/python -m celery -A insights.workers.celery_app worker -Q celery,analysis --loglevel=info --concurrency=4
+    environment:
+      - ENV=development
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - MCP_SEC_URL=http://sec-mcp:8080/sse
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      # Ensure MCP requests to sec-mcp are not sent through a proxy (worker runs the analysis and calls MCP)
+      - NO_PROXY=localhost,127.0.0.1,sec-mcp
+      - no_proxy=localhost,127.0.0.1,sec-mcp
+      - FINBERT_MODE=hf_inference
+      - HF_TOKEN=${HF_TOKEN}
+      - RELOAD=true
+    volumes:
+      - ../python:/app/python:ro
+      - ../configs:/app/configs:ro
+    depends_on:
+      - redis
+      - sec-mcp
+
+  # -------------------------------------------------------------------------
+  # Redis (Task Queue)
+  # -------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # -------------------------------------------------------------------------
+  # SEC EDGAR MCP Server
+  # -------------------------------------------------------------------------
+  sec-mcp:
+    image: sec-edgar-mcp:local
+    command: python -m sec_edgar_mcp.server --transport sse --port 8080
+    environment:
+      - SEC_EDGAR_USER_AGENT=${SEC_API_USER_AGENT:-InSights/1.0}
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/sse', timeout=5)" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+  # -------------------------------------------------------------------------
+  # FinBERT Service (DISABLED - using HuggingFace Inference API instead)
+  # Uncomment if you have GPU hardware and want to run locally
+  # -------------------------------------------------------------------------
+  # finbert:
+  #   build:
+  #     context: ../finbert
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8001:8000"
+  #   command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+  #   volumes:
+  #     - ../finbert:/app
+  #   environment:
+  #     - RELOAD=true
+  #   healthcheck:
+  #     test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 60s
+
+volumes:
+  redis_data:
+
+
+networks:
+  default:
+    name: insights-network

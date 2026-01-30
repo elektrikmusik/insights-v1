@@ -1,0 +1,144 @@
+# Expert Registry Configuration
+# Defines all available experts and their configuration
+
+experts:
+  # ─────────────────────────────────────────────────────────────
+  # Risk Analyst Expert
+  # ─────────────────────────────────────────────────────────────
+  risk_analyst:
+    class: insights.experts.risk.RiskExpert
+    model: "openai/gpt-4o"
+    description: "Analyzes SEC filings for risk factors, drift, and sentiment"
+    priority: 10  # Higher = checked first for routing
+    
+    tools:
+      - sec_toolkit       # MCP wrapper for SEC filings
+      - risk_toolkit      # Domain service wrapper
+      - sentiment_toolkit # FinBERT wrapper
+    
+    sources:
+      - 10-K
+      - 10-Q
+      - 8-K
+    
+    routing_keywords:
+      - risk
+      - risks
+      - threat
+      - vulnerability
+      - exposure
+      - liability
+      - compliance
+      - regulatory
+    
+    output_schema: ExpertResult
+    
+    config:
+      similarity_threshold: 0.85
+      materiality_threshold: 0.7
+  
+  # ─────────────────────────────────────────────────────────────
+  # IP/Patent Expert (Optional)
+  # ─────────────────────────────────────────────────────────────
+  ip_analyst:
+    class: insights.experts.ip.IPExpert
+    model: "google/gemini-pro-1.5"  # Good for document analysis
+    description: "Analyzes patent portfolios and IP litigation risks"
+    priority: 5
+    enabled: false  # Enable when implemented
+    
+    tools:
+      - patent_toolkit
+      - legal_toolkit
+    
+    sources:
+      - USPTO
+      - litigation_databases
+    
+    routing_keywords:
+      - patent
+      - intellectual property
+      - IP
+      - trademark
+      - copyright
+      - licensing
+      - infringement
+    
+    output_schema: ExpertResult
+  
+  # ─────────────────────────────────────────────────────────────
+  # Technology Expert (Optional)
+  # ─────────────────────────────────────────────────────────────
+  tech_analyst:
+    class: insights.experts.tech.TechExpert
+    model: "anthropic/claude-3.5-sonnet"  # Good for code analysis
+    description: "Analyzes technology stack, dependencies, and technical risks"
+    priority: 5
+    enabled: false  # Enable when implemented
+    
+    tools:
+      - github_toolkit
+      - stackshare_toolkit
+    
+    sources:
+      - GitHub
+      - StackShare
+      - tech_blogs
+    
+    routing_keywords:
+      - technology
+      - tech stack
+      - infrastructure
+      - security
+      - cybersecurity
+      - data breach
+      - system
+      - software
+    
+    output_schema: ExpertResult
+  
+  # ─────────────────────────────────────────────────────────────
+  # Macro/Economic Expert (Optional)
+  # ─────────────────────────────────────────────────────────────
+  macro_analyst:
+    class: insights.experts.macro.MacroExpert
+    model: "deepseek-ai/DeepSeek-V3"  # Cost-effective for research
+    description: "Analyzes macroeconomic factors and industry trends"
+    priority: 3
+    enabled: false  # Enable when implemented
+    
+    tools:
+      - news_toolkit
+      - econ_toolkit
+    
+    sources:
+      - news_apis
+      - economic_indicators
+    
+    routing_keywords:
+      - economy
+      - macroeconomic
+      - interest rate
+      - inflation
+      - recession
+      - market
+      - industry
+      - sector
+    
+    output_schema: ExpertResult
+
+# ─────────────────────────────────────────────────────────────
+# Registry Settings
+# ─────────────────────────────────────────────────────────────
+registry:
+  # Maximum experts to consult per query
+  max_experts_per_query: 3
+  
+  # Minimum confidence for expert routing
+  min_routing_confidence: 0.5
+  
+  # Enable parallel execution
+  parallel_execution: true
+  
+  # Timeout per expert (seconds)
+  expert_timeout: 120

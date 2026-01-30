@@ -1,0 +1,31 @@
+# Multi-Provider Fallback Chain Configuration
+fallback:
+  # Per-provider fallback chains
+  openrouter:
+    models:
+      - "openai/gpt-4o"              # Primary
+      - "anthropic/claude-3.5-sonnet" # Secondary
+      - "deepseek/deepseek-chat"      # Tertiary (cheap)
+    circuit_breaker:
+      failure_threshold: 3
+      recovery_timeout_seconds: 300
+  
+  siliconflow:
+    models:
+      - "deepseek-ai/DeepSeek-V3"     # Primary
+      - "Qwen/Qwen2.5-72B-Instruct"   # Secondary
+      - "THUDM/glm-4-9b-chat"         # Tertiary (cheap)
+    circuit_breaker:
+      failure_threshold: 3
+      recovery_timeout_seconds: 300
+  
+  # Cross-provider fallback (when all models in a provider fail)
+  cross_provider:
+    enabled: true
+    chain:
+      - provider: openrouter
+        model: "openai/gpt-4o"
+      - provider: siliconflow
+        model: "deepseek-ai/DeepSeek-V3"
+      - provider: openrouter
+        model: "deepseek/deepseek-chat"

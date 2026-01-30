@@ -1,0 +1,29 @@
+# Env and secrets
+.env
+*.env
+!*.env.example
+
+# OS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+*.egg-info/
+.eggs/
+.coverage
+htmlcov/
+.pytest_cache/
+*.log
+uvicorn.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

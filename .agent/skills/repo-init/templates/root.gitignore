@@ -1,0 +1,21 @@
+# Common monorepo ignores
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+dist/
+build/
+node_modules/
+__pycache__/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.next/
+.cache/
+
+# Agent specific
+.agent/
+agent_docs/
+.gemini/

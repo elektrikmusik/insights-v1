@@ -1,0 +1,106 @@
+[project]
+name = "insights-ai"
+version = "0.1.0"
+description = "InSights-ai: Financial analysis platform using Team of Experts architecture"
+# readme = "README.md"  # Uncomment when README exists
+requires-python = ">=3.11"
+authors = [
+    { name = "InSights Team" }
+]
+
+dependencies = [
+    # Web Framework
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    # Agent Framework
+    "agno>=1.0.0",
+    # HTTP Client
+    "httpx>=0.26.0",
+    # Database
+    "supabase>=2.0.0",
+    "asyncpg>=0.29.0",
+    # Validation
+    "pydantic>=2.5.0",
+    "pydantic-settings>=2.1.0",
+    # Background Tasks
+    "celery[redis]>=5.3.0",
+    "redis>=5.0.0",
+    # Retry Logic
+    "tenacity>=8.2.0",
+    # Text Processing
+    "tiktoken>=0.5.2",
+    "rapidfuzz>=3.6.0",
+    "jinja2>=3.1.2",
+    # Math & ML
+    "numpy>=1.26.0",
+    # Environment
+    "python-dotenv>=1.0.0",
+    # Database Migrations
+    "alembic>=1.13.0",
+    # SSE Client (for MCP)
+    "sse-starlette>=1.8.0",
+    "mcp>=1.0.0",
+    "openai>=2.16.0",
+    # HuggingFace Inference API (lightweight, no local model needed)
+    "huggingface_hub>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.1.0",
+    "mypy>=1.8.0",
+]
+
+finbert = [
+    # FinBERT dependencies (optional, for in-process mode)
+    "transformers>=4.36.0",
+    "torch>=2.1.0",
+]
+
+[project.scripts]
+insights = "insights.server.main:main"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+
+# Supabase client has dynamic JSON typing that doesn't play well with strict mypy
+[[tool.mypy.overrides]]
+module = "insights.adapters.db.*"
+disable_error_code = ["index", "arg-type", "call-overload", "return-value", "union-attr"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["insights"]

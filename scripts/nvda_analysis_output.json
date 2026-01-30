@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "test_id": "risk_analysis_NVDA_20260129_133524",
+    "ticker": "NVDA",
+    "years": [
+      2024,
+      2023
+    ],
+    "base_url": "http://localhost:8000",
+    "job_id": "f13b7f97-35b8-4663-ab09-d2f9199246e4",
+    "started_at": "2026-01-29T13:33:11.032386+00:00",
+    "completed_at": "2026-01-29T13:35:21.311231+00:00",
+    "duration_seconds": 130.278845,
+    "total_events": 8
+  },
+  "request": {
+    "endpoint": "/api/v1/analyze",
+    "method": "POST",
+    "payload": {
+      "ticker": "NVDA",
+      "years": [
+        2024,
+        2023
+      ],
+      "analysis_type": "risk_drift",
+      "options": {
+        "include_sentiment": true,
+        "generate_heatmap": true,
+        "depth": "deep"
+      }
+    }
+  },
+  "stream": {
+    "endpoint": "/api/v1/stream/f13b7f97-35b8-4663-ab09-d2f9199246e4",
+    "events": [
+      {
+        "message": "Connected to stream",
+        "event": "connected",
+        "received_at": "2026-01-29T13:33:11.608640+00:00"
+      },
+      {
+        "event": "job_started",
+        "ticker": "NVDA",
+        "received_at": "2026-01-29T13:33:14.715866+00:00"
+      },
+      {
+        "event": "tool_used",
+        "toolkit": "sec_toolkit",
+        "tool": "get_company_info",
+        "message": "Fetching company info for NVDA",
+        "ticker": "NVDA",
+        "received_at": "2026-01-29T13:33:15.132153+00:00"
+      },
+      {
+        "event": "tool_used",
+        "toolkit": "sec_toolkit",
+        "tool": "get_filing_section",
+        "message": "Fetching section 1A from 10-K for NVDA",
+        "ticker": "NVDA",
+        "section": "1A",
+        "form_type": "10-K",
+        "year": 2024,
+        "received_at": "2026-01-29T13:33:27.967030+00:00"
+      },
+      {
+        "event": "tool_used",
+        "toolkit": "sec_toolkit",
+        "tool": "get_filing_section",
+        "message": "Fetching section 1A from 10-K for NVDA",
+        "ticker": "NVDA",
+        "section": "1A",
+        "form_type": "10-K",
+        "year": 2023,
+        "received_at": "2026-01-29T13:33:27.968823+00:00"
+      },
+      {
+        "event": "tool_used",
+        "toolkit": "risk_toolkit",
+        "tool": "analyze_risk_drift",
+        "message": "Comparing risk factors across periods",
+        "current_count": 24,
+        "previous_count": 25,
+        "received_at": "2026-01-29T13:34:21.087446+00:00"
+      },
+      {
+        "event": "tool_used",
+        "toolkit": "sentiment_toolkit",
+        "tool": "analyze_sentiment",
+        "message": "No-op sentiment on 10 text(s) (set HF_TOKEN for FinBERT)",
+        "analyzer": "noop",
+        "num_texts": 10,
+        "received_at": "2026-01-29T13:34:25.681062+00:00"
+      },
+      {
+        "event": "job_completed",
+        "received_at": "2026-01-29T13:35:21.310900+00:00"
+      }
+    ]
+  },
+  "final_result": {
+    "event": "job_completed",
+    "received_at": "2026-01-29T13:35:21.310900+00:00"
+  },
+  "job_status": {
+    "id": "f13b7f97-35b8-4663-ab09-d2f9199246e4",
+    "job_type": "risk_drift",
+    "request_payload": {
+      "years": [
+        2024,
+        2023
+      ],
+      "ticker": "NVDA",
+      "options": {
+        "depth": "deep",
+        "generate_heatmap": true,
+        "include_sentiment": true
+      },
+      "webhook_url": null,
+      "analysis_type": "risk_drift"
+    },
+    "status": "completed",
+    "progress": 100,
+    "current_step": null,
+    "result_summary": {
+      "content": "# NVIDIA Executive Summary for Institutional Investors\n\n## Bottom Line Up Front (BLUF)\nNVIDIA's fiscal years 2024 and 2023 exhibit a stable risk landscape with no significant shifts in material risks. The consistent risk factors primarily involve competition, supply chain dependencies, and cybersecurity, with proactive management suggested to maintain stability. Institutional investors can be reassured by the unchanging risk profile, though strategic enhancements are recommended to fortify NVIDIA's market position and operational resilience.\n\n## Top Material Changes\n- **No Significant Shifts**: The analysis indicates that there are no significant changes in risk factors from fiscal year 2023 to 2024. All identified risks remain stable.\n\n## Risk Analysis Summary\nNVIDIA's risk profile remains consistent, marked by several stable yet critical areas:\n- **Competition**: Persistent competitive pressures could affect market share; however, the risk level remains unchanged.\n- **Supply Chain Dependencies**: Ongoing reliance on third-party suppliers underscores the need for vigilant supply chain management.\n- **Demand Forecasting**: Accurate demand prediction remains crucial to avoid supply-demand mismatches.\n- **Cybersecurity**: Persistent threats necessitate continued investment in security measures.\n- **Economic and Climate Risks**: Economic volatility and potential climate impact sustain their relevance, with no accelerated changes.\n\n## Expert Consensus & Divergence\nExperts unanimously agree that the risk landscape for NVIDIA is stable across the board without any notable divergence in assessments. The consensus underscores the importance of maintaining vigilance across these risk factors to safeguard the company's standing and performance.\n\n## Strategic Recommendations\n1. **Enhance Demand Forecasting**: Invest in robust analytical tools to align production and market demand, ensuring operational efficiency.\n2. **Strengthen Supply Chain Resilience**: Diversify supplier base and enforce rigorous quality controls to mitigate dependency risks.\n3. **Fortify Cybersecurity Measures**: Continue allocating resources towards advanced cybersecurity to prevent potential breaches and ensure data integrity.\n4. **Climate Risk Adaptation**: Innovate sustainability practices and plan strategically to tackle climate-related risks and regulatory changes.\n5. **Monitor Geopolitical Dynamics**: Stay abreast of international regulations and geopolitical developments to mitigate operational disruptions.\n\nInstitutional investors are advised to monitor these strategic areas to assess NVIDIA's capacity to maintain its market leadership and navigate evolving industry landscapes effectively."
+    },
+    "error_message": null,
+    "created_at": "2026-01-29T13:33:12.174949Z",
+    "started_at": "2026-01-29T13:33:11.034428Z",
+    "completed_at": "2026-01-29T13:35:18.788825Z"
+  },
+  "evaluation": {
+    "success": true,
+    "has_result": true,
+    "event_count": 8,
+    "duration_seconds": 130.278845
+  },
+  "analysis_output": {
+    "content": "# NVIDIA Executive Summary for Institutional Investors\n\n## Bottom Line Up Front (BLUF)\nNVIDIA's fiscal years 2024 and 2023 exhibit a stable risk landscape with no significant shifts in material risks. The consistent risk factors primarily involve competition, supply chain dependencies, and cybersecurity, with proactive management suggested to maintain stability. Institutional investors can be reassured by the unchanging risk profile, though strategic enhancements are recommended to fortify NVIDIA's market position and operational resilience.\n\n## Top Material Changes\n- **No Significant Shifts**: The analysis indicates that there are no significant changes in risk factors from fiscal year 2023 to 2024. All identified risks remain stable.\n\n## Risk Analysis Summary\nNVIDIA's risk profile remains consistent, marked by several stable yet critical areas:\n- **Competition**: Persistent competitive pressures could affect market share; however, the risk level remains unchanged.\n- **Supply Chain Dependencies**: Ongoing reliance on third-party suppliers underscores the need for vigilant supply chain management.\n- **Demand Forecasting**: Accurate demand prediction remains crucial to avoid supply-demand mismatches.\n- **Cybersecurity**: Persistent threats necessitate continued investment in security measures.\n- **Economic and Climate Risks**: Economic volatility and potential climate impact sustain their relevance, with no accelerated changes.\n\n## Expert Consensus & Divergence\nExperts unanimously agree that the risk landscape for NVIDIA is stable across the board without any notable divergence in assessments. The consensus underscores the importance of maintaining vigilance across these risk factors to safeguard the company's standing and performance.\n\n## Strategic Recommendations\n1. **Enhance Demand Forecasting**: Invest in robust analytical tools to align production and market demand, ensuring operational efficiency.\n2. **Strengthen Supply Chain Resilience**: Diversify supplier base and enforce rigorous quality controls to mitigate dependency risks.\n3. **Fortify Cybersecurity Measures**: Continue allocating resources towards advanced cybersecurity to prevent potential breaches and ensure data integrity.\n4. **Climate Risk Adaptation**: Innovate sustainability practices and plan strategically to tackle climate-related risks and regulatory changes.\n5. **Monitor Geopolitical Dynamics**: Stay abreast of international regulations and geopolitical developments to mitigate operational disruptions.\n\nInstitutional investors are advised to monitor these strategic areas to assess NVIDIA's capacity to maintain its market leadership and navigate evolving industry landscapes effectively."
+  }
+}

@@ -1,0 +1,66 @@
+name: InSights AI CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+        
+      - name: Install dependencies
+        run: uv sync --frozen
+        working-directory: ./python
+        
+      - name: Run tests with coverage
+        run: |
+          uv run pytest --cov=insights tests/unit tests/integration --cov-report=xml
+        working-directory: ./python
+        env:
+          ENV: test
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          
+      - name: Upload coverage results
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./python/coverage.xml
+          fail_ci_if_error: false
+
+  lint:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - name: Install dependencies
+        run: uv sync --frozen
+        working-directory: ./python
+      - name: Run ruff
+        run: uv run ruff check .
+        working-directory: ./python
+      - name: Run mypy
+        run: uv run mypy insights
+        working-directory: ./python

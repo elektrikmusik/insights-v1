@@ -1,0 +1,40 @@
+# ============================================================================
+# InSights-ai Worker Dockerfile
+# ============================================================================
+
+FROM python:3.12-slim AS builder
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y build-essential curl && rm -rf /var/lib/apt/lists/*
+
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
+COPY python/pyproject.toml python/uv.lock ./
+RUN uv sync --frozen --no-dev
+
+FROM python:3.12-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y libpq5 && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /app/.venv /app/.venv
+
+# Copy dependency files for reference
+COPY python/pyproject.toml python/uv.lock ./
+
+ENV PATH="/app/.venv/bin:$PATH"
+ENV PYTHONPATH="/app/python"
+ENV VIRTUAL_ENV="/app/.venv"
+
+COPY python/ /app/python/
+COPY configs/ /app/configs/
+
+RUN useradd --create-home --shell /bin/bash appuser
+RUN chown -R appuser:appuser /app
+USER appuser
+
+# Run Celery worker using python -m
+CMD ["/app/.venv/bin/python", "-m", "celery", "-A", "insights.workers.celery_app", "worker", "--loglevel=info", "--concurrency=4"]
